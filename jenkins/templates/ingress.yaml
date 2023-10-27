@@ -1,18 +1,18 @@
- apiVersion: networking.k8s.io/v1
- kind: Ingress
- metadata:
-   name: jenkins
-   namespace: kube-ops
- spec:
-   ingressClassName: nginx
-   rules:
-     - host: jenkins.k8s.local
-       http:
-         paths:
-           - path: /
-             pathType: Prefix
-             backend:
-               service:
-                 name: jenkins
-                 port:
-                   name: web
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: jenkins
+#   namespace: kube-ops
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - host: jenkins.k8s.local
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: jenkins
+#                 port:
+#                   name: web
