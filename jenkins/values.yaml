@@ -4,14 +4,20 @@
 
 replicaCount: 1
 
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+images:
+  initContainer:
+    image:  library/busybox
+    pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+    tag: "1.35.0"
+  jenkins:
+    image: jenkins/jenkins
+    tag: "lts-jdk11"
+    pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 nameOverride: ""
+namespaceOverride: "kube-ops"
 fullnameOverride: ""
 
 serviceAccount:

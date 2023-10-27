@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jenkins
-  namespace: kube-ops
+  namespace: {{ .Values.namespaceOverride }}
 spec:
   selector:
     matchLabels:
@@ -15,7 +15,7 @@ spec:
       serviceAccount: jenkins
       initContainers:
         - name: fix-permissions
-          image: busybox:1.35.0
+          image: {{  .Values.images.initContainer.image }}:{{  .Values.images.initContainer.tag }}
           command: ["sh", "-c", "chown -R 1000:1000 /var/jenkins_home"]
           securityContext:
             privileged: true
@@ -24,7 +24,7 @@ spec:
               mountPath: /var/jenkins_home
       containers:
         - name: jenkins
-          image: jenkins/jenkins:lts-jdk11
+          image: {{  .Values.images.jenkins.image }}:{{  .Values.images.jenkins.tag }}
           imagePullPolicy: IfNotPresent
           env:
             - name: JAVA_OPTS
