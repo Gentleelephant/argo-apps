@@ -53,7 +53,7 @@ spec:
       volumes:
         - name: jenkinshome
           hostPath:
-            path: /root/jenkins-home
+            path: /root/jenkins-data
             type: Directory
         - name: dockersock
           hostPath:
