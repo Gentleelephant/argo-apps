@@ -12,7 +12,7 @@ spec:
       labels:
         app: jenkins
     spec:
-      serviceAccount: jenkins
+      serviceAccount: jenkins-sa
       initContainers:
         - name: fix-permissions
           image: {{  .Values.images.initContainer.image }}:{{  .Values.images.initContainer.tag }}
@@ -23,7 +23,7 @@ spec:
             - name: jenkinshome
               mountPath: /var/jenkins_home
       containers:
-        - name: jenkins
+        - name: jenkins-sa
           image: {{  .Values.images.jenkins.image }}:{{  .Values.images.jenkins.tag }}
           imagePullPolicy: IfNotPresent
           env:
